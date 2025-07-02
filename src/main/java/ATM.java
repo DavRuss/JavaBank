@@ -1,8 +1,11 @@
+import PatronComportamiento.Strategy.AuthStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ATM implements Authenticatable{
+    private AuthStrategy authStrategy;
     private Calculadora calculator = new Calculadora();
     private List<Account> accounts;
 
@@ -61,6 +64,14 @@ public class ATM implements Authenticatable{
     public boolean authenticate(String pin) {
         // Lógica de autenticación...
         return true; // o false según el caso
+    }
+
+    public void setAuthStrategy(AuthStrategy authStrategy) {
+        this.authStrategy = authStrategy;
+    }
+
+    public boolean authenticateUser(String data) {
+        return authStrategy.authenticate(data);
     }
 }
 
