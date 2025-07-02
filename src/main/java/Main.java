@@ -1,22 +1,74 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Variables básicas
-        String accountNumber = "123456789";
-        double balance = 1500.75;
-        int pin = 1234;
+        double balance = 1000.0;
+        ArrayList<String> transactionHistory = new ArrayList<>();
 
-        // Array de montos de transacciones
-        int[] transactionAmounts = {200, -100, 50};
+        deposit(500, balance, transactionHistory);
+        withdraw(100, balance, transactionHistory);
 
-        // Operaciones con variables
-        balance += transactionAmounts[0]; // Depósito
-        if (balance > 0 && pin == 1234) {
-            System.out.println("Acceso Concedido");
+        System.out.println("Balance final: " + balance);
+        for (String transaction : transactionHistory) {
+            System.out.println(transaction);
         }
-
-        // Uso de operadores
-        balance++; // Incremento
-        String status = (balance < 0) ? "Deuda" : "Crédito";
-        System.out.println("Estado de cuenta: " + status);
     }
+
+    public static void deposit(double amount, double balance, ArrayList<String> transactionHistory) {
+        balance += amount;
+        transactionHistory.add("Deposited: $" + amount);
+    }
+
+    public static boolean withdraw(double amount, double balance, ArrayList<String> transactionHistory) {
+        if (balance >= amount) {
+            balance -= amount;
+            transactionHistory.add("Withdrew: $" + amount);
+            return true;
+        } else {
+            System.out.println("Insufficient funds");
+            return false;
+        }
+    }
+
+public void displayMenu() {
+        System.out.println("Opciones del ATM:");
+        System.out.println("1. Consultar saldo");
+        System.out.println("2. Depositar dinero");
+        System.out.println("3. Retirar dinero");
+        System.out.println("Selecciona una opción:");
+
+        Scanner sc = new Scanner(System.in);
+        int option = sc.nextInt();
+
+        switch (option) {
+            case 1:
+//                checkBalance();
+                break;
+            case 2:
+//                depositMoney();
+                break;
+            case 3:
+//                withdrawMoney();
+                break;
+            default:
+                System.out.println("Opción no válida.");
+        }
+    }
+
+//    public boolean authenticateUser(String inputPin) {
+//        int attempts = 0;
+//        while (attempts < 3) {
+//            if (this.pin.equals(inputPin)) {
+//                return true;
+//            } else {
+//                attempts++;
+//                System.out.println("PIN incorrecto. Intento " + attempts + " de 3.");
+//            }
+//        }
+//        return false;
+//    }
+
+
 }
