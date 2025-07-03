@@ -1,20 +1,37 @@
+import Excepciones.InsufficientFundsException;
+import Excepciones.InvalidAccountException;
 import PatronComportamiento.Strategy.AuthStrategy;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ATM implements Authenticatable{
     private AuthStrategy authStrategy;
     private Calculadora calculator = new Calculadora();
-    private List<Account> accounts;
+//    private List<Account> accounts;
+    private Map<String, Account> accounts;
+    private static final String LOG_FILE = "transactions.log";
+    private TransactionLogger logger = new TransactionLogger(LOG_FILE);
+
 
     public ATM() {
-        this.accounts = new ArrayList<>();
+//        this.accounts = new ArrayList<>();
+        accounts = new HashMap<>();
+    }
+
+    public void performTransfer(String sourceAccountNumber, String targetAccountNumber, double amount) {
+        try {
+            accounts.get(sourceAccountNumber).transferFunds(targetAccountNumber, amount);
+            System.out.println("Transferencia exitosa");
+        } catch (InsufficientFundsException | InvalidAccountException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            // Registro de la transacción
+        }
+        logger.logTransaction(sourceAccountNumber + " " + type + " " + amount);
     }
 
     public void addAccount(Account account) {
-        this.accounts.add(account);
+//        this.accounts.add(account);
     }
 
     public Account getAccount(String accountNumber) {
@@ -56,6 +73,8 @@ public class ATM implements Authenticatable{
     }
 
     public static void main(String[] args) {
+        String accountNumber = null;
+        System.out.println(accountNumber.length()); // Esto es una excepción unchecked ya que no se puede saber el .length() de un String nulo.
         ATM atm = new ATM();
         atm.start();
     }
@@ -73,5 +92,7 @@ public class ATM implements Authenticatable{
     public boolean authenticateUser(String data) {
         return authStrategy.authenticate(data);
     }
+
+
 }
 

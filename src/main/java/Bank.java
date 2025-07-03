@@ -4,5 +4,11 @@ public class Bank {
     public static void incrementAccountCount() {
         accountCount++;
     }
+
+    public static boolean isValidAccount(String targetAccountNumber) {
+    }
+
+    public static Account getAccount(String targetAccountNumber) {
+    }
 }
 

@@ -2,7 +2,7 @@ public class SavingsAccount extends Account {
     private double interestRate;
 
     public SavingsAccount(String accountNumber, double initialBalance, double interestRate) {
-        super(accountNumber, initialBalance);
+        super(accountNumber, initialBalance, pin);
         this.interestRate = interestRate;
     }
 

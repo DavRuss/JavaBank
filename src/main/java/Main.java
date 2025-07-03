@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
+    private String pin;
+
     public static void main(String[] args) {
         double balance = 1000.0;
         ArrayList<String> transactionHistory = new ArrayList<>();
