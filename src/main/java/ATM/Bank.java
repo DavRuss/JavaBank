@@ -1,3 +1,5 @@
+package ATM;
+
 public class Bank {
     private static int accountCount = 0;
 

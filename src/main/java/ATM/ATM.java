@@ -1,13 +1,21 @@
+package ATM;
+
 import Excepciones.InsufficientFundsException;
 import Excepciones.InvalidAccountException;
 import PatronComportamiento.Strategy.AuthStrategy;
+import PatronEsctructural.Composite.Transaction;
+import StreamReader.TransactionLogger;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-public class ATM implements Authenticatable{
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class ATM implements Authenticatable {
     private AuthStrategy authStrategy;
     private Calculadora calculator = new Calculadora();
-//    private List<Account> accounts;
+//    private List<ATM.ATM.Account> accounts;
     private Map<String, Account> accounts;
     private static final String LOG_FILE = "transactions.log";
     private TransactionLogger logger = new TransactionLogger(LOG_FILE);
@@ -48,7 +56,7 @@ public class ATM implements Authenticatable{
         boolean exit = false;
 
         while (!exit) {
-            System.out.println("Bienvenido a JavaBank ATM.");
+            System.out.println("Bienvenido a JavaBank ATM.ATM.");
             System.out.println("Seleccione una operación:");
             System.out.println("1. Realizar una transacción");
             System.out.println("2. Usar la calculadora");
@@ -89,8 +97,18 @@ public class ATM implements Authenticatable{
         this.authStrategy = authStrategy;
     }
 
-    public boolean authenticateUser(String data) {
+    public boolean authenticateUser(String data, String correctPIN) {
         return authStrategy.authenticate(data);
+    }
+
+    @Test
+    void testATMTransaction() {
+        ATM atm = new ATM();
+        boolean authenticated = atm.authenticateUser("12345", "correctPIN");
+        assertTrue(authenticated);
+
+        atm.performTransaction("12345", Transaction.TransactionType.WITHDRAWAL, 100.00);
+        assertEquals(400.00, atm.getAccountBalance("12345"));
     }
 
 

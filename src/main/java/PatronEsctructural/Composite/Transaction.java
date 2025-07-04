@@ -6,4 +6,6 @@ public interface Transaction {
     void execute();
 
     boolean getType();
+
+    int getAmount();
 }

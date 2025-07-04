@@ -1,4 +1,4 @@
-// Ejemplo de Checked Exception
+package StreamReader;// Ejemplo de Checked Exception
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

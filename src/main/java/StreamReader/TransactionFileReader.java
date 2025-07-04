@@ -1,3 +1,5 @@
+package StreamReader;
+
 import PatronEsctructural.Composite.Transaction;
 
 import java.io.BufferedReader;

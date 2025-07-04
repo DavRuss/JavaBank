@@ -35,7 +35,7 @@ public class Main {
     }
 
 public void displayMenu() {
-        System.out.println("Opciones del ATM:");
+        System.out.println("Opciones del ATM.ATM:");
         System.out.println("1. Consultar saldo");
         System.out.println("2. Depositar dinero");
         System.out.println("3. Retirar dinero");

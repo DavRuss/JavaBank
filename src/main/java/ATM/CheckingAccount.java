@@ -1,6 +1,8 @@
+package ATM;
+
 import Excepciones.InsufficientFundsException;
 
-public class CheckingAccount extends Account{
+public class CheckingAccount extends Account {
 
     public CheckingAccount(String accountNumber, double balance, String pin){
         super(accountNumber, balance, pin);
